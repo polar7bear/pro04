@@ -52,5 +52,29 @@ public class NoticeController {
 		return "redirect:list.do";
 	}
 	
+	@GetMapping("delete.do")
+	public String noticeDelete(HttpServletRequest request, Model model) throws Exception {
+		int no = Integer.parseInt(request.getParameter("no"));
+		noticeService.noticeDelete(no);
+		return "redirect:list.do";
+	}
 	
-}
+	@GetMapping("edit.do")
+	public String noticeEdit(HttpServletRequest request, Model model) throws Exception {
+		int no = Integer.parseInt(request.getParameter("no"));
+		NoticeDTO dto = noticeService.noticeDetail(no);
+		model.addAttribute("dto", dto);
+		return "notice/noticeEdit";
+	}
+	
+	@PostMapping("edit.do")
+	public String noticeEditPro(HttpServletRequest request, Model model) throws Exception {
+		int no = Integer.parseInt(request.getParameter("no"));
+		NoticeDTO dto = new NoticeDTO();
+		dto.setNo(no);
+		dto.setTitle(request.getParameter("title"));
+		dto.setContent(request.getParameter("content"));
+		noticeService.noticeEdit(dto);
+		return "redirect:list.do";
+		}
+	}

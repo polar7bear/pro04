@@ -7,14 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="./include/head.jsp" />
 <meta charset="UTF-8">
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+<jsp:include page="./include/hd.jsp" />
 	<a href="${path1 }/notice/list.do">공지사항</a>
-<P>  The time on the server is ${serverTime}. </P>
+	<h2>메인</h2>
+<jsp:include page="./include/ft.jsp" />
 </body>
 </html>

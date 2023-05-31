@@ -46,6 +46,21 @@
 	
 	<context:component-scan base-package="com.myshop.*" />
 	
+	<!-- 인터셉터 로그인을 해야만 지정한 권한의 기능을 수행할 수 있도록 하는 제한점 -->
+	<beans:bean id="loginIntercepter" class="com.myshop.util.LoginCheckIntercepter" />
+	<beans:bean id="adminIntercepter" class="com.myshop.util.AdminIntercepter" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/notice/insert.do" />
+			<mapping path="/notice/edit.do" />
+			<beans:ref bean="loginIntercepter" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/list.do" />
+			<mapping path="/member/info.do" />
+			<beans:ref bean="adminIntercepter" />
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
